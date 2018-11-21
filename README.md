@@ -1,7 +1,26 @@
-# SeisJOLI
+# SeisJOLI - Seismic JOLI
 
-[![Build Status](https://travis-ci.org/henryk-modzelewski/SeisJOLI.jl.svg?branch=master)](https://travis-ci.org/henryk-modzelewski/SeisJOLI.jl)
+Collection of SLIM in-house operators based on [JOLI](https://github.com/slimgroup/JOLI.jl) package
 
-[![Coverage Status](https://coveralls.io/repos/henryk-modzelewski/SeisJOLI.jl/badge.svg?branch=master&service=github)](https://coveralls.io/github/henryk-modzelewski/SeisJOLI.jl?branch=master)
+Note that SeisJOLI requires JOLI compatible with that Julia 0.7+ and Julia 0.7+ as well.
 
-[![codecov.io](http://codecov.io/github/henryk-modzelewski/SeisJOLI.jl/coverage.svg?branch=master)](http://codecov.io/github/henryk-modzelewski/SeisJOLI.jl?branch=master)
+## INSTALLATION
+
+Install **JOLI version compatible with Julia 0.7+**, if you do not have it already. Currently, it is on branch **v07-devel**. From Julia prompt run:
+
+```
+Pkg.add(PackageSpec(url="https://github.com/slimgroup/JOLI.jl.git",rev="v07-devel"))
+```
+
+Then, run the following if you will not need developer's write access or if you do not have GitHub account:
+
+```
+Pkg.add(PackageSpec(url="https://github.com/slimgroup/SeisJOLI.jl.git",rev="v07-devel"))
+```
+
+or with GitHub account (and SSH keys registered) for full developer access run:
+
+```
+Pkg.develop(PackageSpec(url="git@github.com:slimgroup/SeisJOLI.jl.git"))
+```
+

@@ -4,12 +4,13 @@ os:
   - linux
   - osx
 julia:
-  - 0.6
-  - nightly
-notifications:
-  email: false
-git:
-  depth: 99999999
+  - 1.0
+#  - nightly
+branches:
+  only:
+  - master
+#notifications:
+#  email: false
 
 ## uncomment the following lines to allow failures on nightly julia
 ## (tests will run but not make your overall status red)
@@ -29,7 +30,7 @@ git:
 #script:
 #  - julia -e 'Pkg.clone(pwd()); Pkg.build("SeisJOLI"); Pkg.test("SeisJOLI"; coverage=true)'
 after_success:
-  # push coverage results to Coveralls
-  - julia -e 'cd(Pkg.dir("SeisJOLI")); Pkg.add("Coverage"); using Coverage; Coveralls.submit(Coveralls.process_folder())'
-  # push coverage results to Codecov
-  - julia -e 'cd(Pkg.dir("SeisJOLI")); Pkg.add("Coverage"); using Coverage; Codecov.submit(Codecov.process_folder())'
+#  # push coverage results to Coveralls
+#  - julia -e 'cd(Pkg.dir("SeisJOLI")); Pkg.add("Coverage"); using Coverage; Coveralls.submit(Coveralls.process_folder())'
+#  # push coverage results to Codecov
+#  - julia -e 'cd(Pkg.dir("SeisJOLI")); Pkg.add("Coverage"); using Coverage; Codecov.submit(Codecov.process_folder())'
