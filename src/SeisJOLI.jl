@@ -8,4 +8,7 @@ module SeisJOLI
     # units-dependent Radon transform
     include("operators/joRadon.jl")
 
+    # units-dependent NMO correction
+    include("operators/joNMO.jl")
+
 end

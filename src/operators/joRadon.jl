@@ -40,7 +40,7 @@ module joRadon_etc
         h=jo_convert(idt,h)
         q=jo_convert(idt,q)
 
-        input_padded = Matrix{idt}(undef,fftN, hN)
+        input_padded = Matrix{idt}(fftN, hN)
         input_padded[1:tN,:] = input[:,:]
         input_padded[tN+1:fftN,:] .= zero(idt)
 
@@ -74,7 +74,7 @@ module joRadon_etc
         h=jo_convert(idt,h)
         q=jo_convert(idt,q)
 
-        input_padded = Matrix{idt}(undef, fftN, qN)
+        input_padded = Matrix{idt}(fftN, qN)
         input_padded[1:tN,:] = input[:,:]
         input_padded[tN+1:fftN,:] .= zero(idt)
 
@@ -126,10 +126,9 @@ function joRadon(t::Vector,h::Vector,q::Vector,power::Integer;DDT::DataType=joCo
     nt=length(t)
     nh=length(h)
     nq=length(q)
-    return joLinearFunctionFwd_A(nt*nq,nt*nh,
+    return joLinearFunctionFwdT(nt*nq, nt*nh,
         v1->joRadon_etc.fwd_lpradon(vec(v1),t,h,q,power,RDT),
         v2->joRadon_etc.adj_lpradon(vec(v2),t,h,q,power,DDT),
         DDT,RDT;
         name="joRadon")
 end
-

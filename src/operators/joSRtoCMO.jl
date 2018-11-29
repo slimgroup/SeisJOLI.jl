@@ -3,9 +3,8 @@
 ## helper module
 module joSRtoCMO_etc
     using JOLI: jo_convert
-    using LinearAlgebra
     # forward SRtoCMO
-    function SRtoCMOfwd(x::Vector{vdt},nr::Int,ns::Int,RDT::DataType) where vdt<:Number
+    function SRtoCMOfwd(x::AbstractVector,nr::Int,ns::Int,RDT::DataType)
         x    = reshape(x,nr,ns);
         B    = zeros(RDT,nr,2*ns-1);
         for k = 1-ns:1:nr-1
@@ -16,7 +15,7 @@ module joSRtoCMO_etc
         return B
     end
     # adjoint SRtoCMO
-    function SRtoCMOadj(x::Vector{vdt},nr::Int,ns::Int,RDT::DataType) where vdt<:Number
+    function SRtoCMOadj(x::AbstractVector,nr::Int,ns::Int,RDT::DataType)
         x = reshape(x,nr,2*ns-1);
         B = zeros(RDT,nr,ns);
         for k = 1-ns:1:nr-1
@@ -54,10 +53,9 @@ converter from shot record to common-midpoint offset record
 
 """
 function joSRtoCMO(nr::Int,ns::Int;DDT::DataType=joComplex,RDT::DataType=DDT)
-    joLinearFunctionFwd_A((nr)*(2*ns-1),nr*ns,
+    joLinearFunctionFwdT((nr)*(2*ns-1),nr*ns,
         v1->joSRtoCMO_etc.SRtoCMOfwd(v1,nr,ns,RDT),
         v2->joSRtoCMO_etc.SRtoCMOadj(v2,nr,ns,DDT),
         DDT,RDT;
         name="joSRtoCMO")
 end
-
